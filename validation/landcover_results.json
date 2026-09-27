@@ -1,0 +1,130 @@
+{
+ "labelled": 100,
+ "mixed_excluded": 13,
+ "evaluated": 87,
+ "overall_accuracy": 0.92,
+ "cohen_kappa": 0.845,
+ "per_site_accuracy": {
+  "Hiware Bazar, MH (semi-arid)": "20/21",
+  "Ludhiana rural, PB (irrigated)": "20/20",
+  "Kuttanad, KL (wet, paddy/water)": "21/23",
+  "Jaipur rural, RJ (arid)": "19/23"
+ },
+ "confusion_true_rows_pred_cols": {
+  "vegetation": {
+   "vegetation": 33,
+   "open_land": 3,
+   "built_up": 1,
+   "water": 0
+  },
+  "open_land": {
+   "vegetation": 3,
+   "open_land": 45,
+   "built_up": 0,
+   "water": 0
+  },
+  "built_up": {
+   "vegetation": 0,
+   "open_land": 0,
+   "built_up": 2,
+   "water": 0
+  },
+  "water": {
+   "vegetation": 0,
+   "open_land": 0,
+   "built_up": 0,
+   "water": 0
+  }
+ },
+ "producer_accuracy": {
+  "vegetation": 0.892,
+  "open_land": 0.938,
+  "built_up": 1.0,
+  "water": null
+ },
+ "user_accuracy": {
+  "vegetation": 0.917,
+  "open_land": 0.938,
+  "built_up": 0.667,
+  "water": null
+ },
+ "errors": [
+  {
+   "id": 20,
+   "true": "vegetation",
+   "pred": "open_land",
+   "fractions": {
+    "water": 0.0,
+    "built_up": 0.0,
+    "vegetation": 0.0,
+    "open_land": 1.0
+   }
+  },
+  {
+   "id": 58,
+   "true": "vegetation",
+   "pred": "open_land",
+   "fractions": {
+    "water": 0.0,
+    "built_up": 0.0,
+    "vegetation": 0.25,
+    "open_land": 0.75
+   }
+  },
+  {
+   "id": 59,
+   "true": "vegetation",
+   "pred": "built_up",
+   "fractions": {
+    "water": 0.0,
+    "built_up": 0.56,
+    "vegetation": 0.44,
+    "open_land": 0.0
+   }
+  },
+  {
+   "id": 76,
+   "true": "open_land",
+   "pred": "vegetation",
+   "fractions": {
+    "water": 0.0,
+    "built_up": 0.0,
+    "vegetation": 0.88,
+    "open_land": 0.12
+   }
+  },
+  {
+   "id": 80,
+   "true": "open_land",
+   "pred": "vegetation",
+   "fractions": {
+    "water": 0.0,
+    "built_up": 0.0,
+    "vegetation": 0.75,
+    "open_land": 0.25
+   }
+  },
+  {
+   "id": 84,
+   "true": "open_land",
+   "pred": "vegetation",
+   "fractions": {
+    "water": 0.0,
+    "built_up": 0.0,
+    "vegetation": 0.62,
+    "open_land": 0.38
+   }
+  },
+  {
+   "id": 94,
+   "true": "vegetation",
+   "pred": "open_land",
+   "fractions": {
+    "water": 0.0,
+    "built_up": 0.0,
+    "vegetation": 0.44,
+    "open_land": 0.56
+   }
+  }
+ ]
+}

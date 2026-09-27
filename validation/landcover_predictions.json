@@ -1,0 +1,1302 @@
+[
+ {
+  "id": 1,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.07150734941853,
+  "lon": 74.60318851746851,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 2,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.06575169909069,
+  "lon": 74.59272169479304,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 3,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.062694009854027,
+  "lon": 74.59367322412717,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 4,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.07312612607323,
+  "lon": 74.59443444759448,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 5,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.062334281708537,
+  "lon": 74.59633750626274,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 6,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.07312612607323,
+  "lon": 74.6016660705339,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 7,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.070787893127548,
+  "lon": 74.59747934146371,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 8,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.074385174582446,
+  "lon": 74.60471096440311,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.44,
+   "vegetation": 0.0,
+   "open_land": 0.56
+  }
+ },
+ {
+  "id": 9,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.07276639792774,
+  "lon": 74.59215077719256,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 10,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.061255097272067,
+  "lon": 74.60680432893821,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 11,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.060535640981087,
+  "lon": 74.6024272940012,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 12,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.06683088352716,
+  "lon": 74.60661402307139,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 13,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.068449660181862,
+  "lon": 74.6024272940012,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.69,
+   "open_land": 0.31
+  }
+ },
+ {
+  "id": 14,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.072226805709505,
+  "lon": 74.60071454119976,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.5,
+   "open_land": 0.5
+  }
+ },
+ {
+  "id": 15,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.060535640981087,
+  "lon": 74.60870738760647,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 16,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.07186707756402,
+  "lon": 74.60433035266946,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.75,
+   "open_land": 0.25
+  }
+ },
+ {
+  "id": 17,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.06719061167265,
+  "lon": 74.59177016545891,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 18,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.072946262000485,
+  "lon": 74.59557628279545,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 19,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.06683088352716,
+  "lon": 74.59557628279545,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 20,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.068089932036372,
+  "lon": 74.59177016545891,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 21,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.07564422309166,
+  "lon": 74.60414004680264,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 22,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.076543543455383,
+  "lon": 74.59976301186563,
+  "predicted": "built_up",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.62,
+   "vegetation": 0.0,
+   "open_land": 0.38
+  }
+ },
+ {
+  "id": 23,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.074025446436956,
+  "lon": 74.60908799934013,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 24,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.06071550505383,
+  "lon": 74.59919209426515,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 25,
+  "site": "Hiware Bazar, MH (semi-arid)",
+  "lat": 19.068269796109117,
+  "lon": 74.59690842386323,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.25,
+   "open_land": 0.75
+  }
+ },
+ {
+  "id": 26,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.79775169909069,
+  "lon": 75.69005361776969,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 27,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.79847115538167,
+  "lon": 75.69047241281096,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 28,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.804946262000485,
+  "lon": 75.7032456615699,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 29,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.80440666978225,
+  "lon": 75.69759192851267,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 30,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.805305990145975,
+  "lon": 75.70094228884288,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 31,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.796852378726964,
+  "lon": 75.70115168636352,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 32,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.79991006796363,
+  "lon": 75.70387385413181,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 33,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.791816184690106,
+  "lon": 75.69738253099203,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 34,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.799370475745395,
+  "lon": 75.70910879214776,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 35,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.803327485345783,
+  "lon": 75.69382277314118,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 36,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.7937946894903,
+  "lon": 75.69801072355394,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 37,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.797571835017944,
+  "lon": 75.69612614586819,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.38,
+   "open_land": 0.62
+  }
+ },
+ {
+  "id": 38,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.804586533854994,
+  "lon": 75.70659602190011,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 39,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.808363679382637,
+  "lon": 75.7032456615699,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 40,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.80440666978225,
+  "lon": 75.69424156818245,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 41,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.79235577690834,
+  "lon": 75.70282686652862,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.25,
+   "open_land": 0.75
+  }
+ },
+ {
+  "id": 42,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.79451414578128,
+  "lon": 75.69842951859522,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.88,
+   "open_land": 0.12
+  }
+ },
+ {
+  "id": 43,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.794334281708537,
+  "lon": 75.70931818966841,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 44,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.793255097272066,
+  "lon": 75.7103651772716,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 45,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.797571835017944,
+  "lon": 75.70261746900798,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 46,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.799370475745395,
+  "lon": 75.69549795330629,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 47,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.799370475745395,
+  "lon": 75.70157048140479,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 48,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.80080938832735,
+  "lon": 75.70136108388415,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 49,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.80764422309166,
+  "lon": 75.6923569904967,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.31,
+   "open_land": 0.69
+  }
+ },
+ {
+  "id": 50,
+  "site": "Ludhiana rural, PB (irrigated)",
+  "lat": 30.80728449494617,
+  "lon": 75.69989530123968,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 51,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.421096728399126,
+  "lon": 76.42428470705936,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.5,
+   "open_land": 0.5
+  }
+ },
+ {
+  "id": 52,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.43116911647284,
+  "lon": 76.42610798665909,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 53,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.435485854218719,
+  "lon": 76.41680926070048,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 54,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.430989252400098,
+  "lon": 76.42009116397999,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 55,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.436025446436954,
+  "lon": 76.41261571762111,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 56,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.435305990145974,
+  "lon": 76.42082047581988,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 57,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.429190611672647,
+  "lon": 76.42647264257904,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 58,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.428830883527159,
+  "lon": 76.42829592217876,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.25,
+   "open_land": 0.75
+  }
+ },
+ {
+  "id": 59,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.432967757200291,
+  "lon": 76.42610798665909,
+  "predicted": "built_up",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.56,
+   "vegetation": 0.44,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 60,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.421636320617361,
+  "lon": 76.4241023790994,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 61,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.432428164982056,
+  "lon": 76.42045581989993,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.88,
+   "open_land": 0.12
+  }
+ },
+ {
+  "id": 62,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.43512612607323,
+  "lon": 76.42100280377986,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 63,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.42451414578128,
+  "lon": 76.4281135942188,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 64,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.42343496134481,
+  "lon": 76.42866057809871,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 65,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.434946262000485,
+  "lon": 76.42756661033887,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 66,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.42307523319932,
+  "lon": 76.41899719622015,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.69,
+   "open_land": 0.31
+  }
+ },
+ {
+  "id": 67,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.432967757200291,
+  "lon": 76.41790322846032,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 68,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.429550339818137,
+  "lon": 76.41261571762111,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 69,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.42595305836324,
+  "lon": 76.42319073929953,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 70,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.432787893127546,
+  "lon": 76.41899719622015,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.25,
+   "vegetation": 0.56,
+   "open_land": 0.19
+  }
+ },
+ {
+  "id": 71,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.430089932036372,
+  "lon": 76.42045581989993,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 72,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.42343496134481,
+  "lon": 76.4281135942188,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.81,
+   "open_land": 0.19
+  }
+ },
+ {
+  "id": 73,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.434946262000485,
+  "lon": 76.42884290605869,
+  "predicted": "built_up",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 1.0,
+   "vegetation": 0.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 74,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.425413466145004,
+  "lon": 76.4206381478599,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 1.0,
+   "open_land": 0.0
+  }
+ },
+ {
+  "id": 75,
+  "site": "Kuttanad, KL (wet, paddy/water)",
+  "lat": 9.43368721349127,
+  "lon": 76.41863254030021,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.06,
+   "open_land": 0.94
+  }
+ },
+ {
+  "id": 76,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.75512612607323,
+  "lon": 75.5458708841698,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.88,
+   "open_land": 0.12
+  }
+ },
+ {
+  "id": 77,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.74523360207226,
+  "lon": 75.5466765653074,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 78,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.75296775720029,
+  "lon": 75.5472808261606,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 79,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.74703224279971,
+  "lon": 75.54828792758259,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.06,
+   "open_land": 0.94
+  }
+ },
+ {
+  "id": 80,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.75008993203637,
+  "lon": 75.5486907681514,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.75,
+   "open_land": 0.25
+  }
+ },
+ {
+  "id": 81,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.75890327160087,
+  "lon": 75.5501007101422,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 82,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.746132922435983,
+  "lon": 75.5416410581974,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 83,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.75296775720029,
+  "lon": 75.5416410581974,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 84,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.74145645654462,
+  "lon": 75.545468043601,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.62,
+   "open_land": 0.38
+  }
+ },
+ {
+  "id": 85,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.74271550505383,
+  "lon": 75.5400296959222,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 86,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.755665718291464,
+  "lon": 75.55956746350898,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 87,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.757464359018915,
+  "lon": 75.5519134927018,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 88,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.746312786508728,
+  "lon": 75.5460723044542,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.12,
+   "open_land": 0.88
+  }
+ },
+ {
+  "id": 89,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.755665718291464,
+  "lon": 75.5470794058762,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 90,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.74883088352716,
+  "lon": 75.5470794058762,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 91,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.74199604876285,
+  "lon": 75.55634473895859,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 92,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.743974553563046,
+  "lon": 75.5539276955458,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 93,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.743255097272066,
+  "lon": 75.5521149129862,
+  "predicted": "vegetation",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.62,
+   "open_land": 0.38
+  }
+ },
+ {
+  "id": 94,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.742895369126575,
+  "lon": 75.5523163332706,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.44,
+   "open_land": 0.56
+  }
+ },
+ {
+  "id": 95,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.756385174582444,
+  "lon": 75.5476836667294,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 96,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.748291291308924,
+  "lon": 75.55775468094939,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 97,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.750989252400096,
+  "lon": 75.552517753555,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 98,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.748291291308924,
+  "lon": 75.5521149129862,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 99,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.74847115538167,
+  "lon": 75.5553376375366,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ },
+ {
+  "id": 100,
+  "site": "Jaipur rural, RJ (arid)",
+  "lat": 26.746852378726963,
+  "lon": 75.54204389876621,
+  "predicted": "open_land",
+  "fractions": {
+   "water": 0.0,
+   "built_up": 0.0,
+   "vegetation": 0.0,
+   "open_land": 1.0
+  }
+ }
+]

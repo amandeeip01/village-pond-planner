@@ -1,0 +1,301 @@
+{
+ "summary": {
+  "Sahyadri (Pune-Ahilyanagar)": {
+   "n": 18,
+   "dropped_outliers": 0,
+   "bias_m": -25.9,
+   "mae_m": 43.1,
+   "rmse_m": 64.0,
+   "median_abs_m": 14.1
+  },
+  "Deccan plateau (Karnataka)": {
+   "n": 6,
+   "dropped_outliers": 0,
+   "bias_m": -60.3,
+   "mae_m": 60.3,
+   "rmse_m": 79.6,
+   "median_abs_m": 53.1
+  },
+  "Nilgiris / Western Ghats (TN-Kerala)": {
+   "n": 20,
+   "dropped_outliers": 0,
+   "bias_m": -17.1,
+   "mae_m": 21.2,
+   "rmse_m": 24.9,
+   "median_abs_m": 17.8
+  },
+  "ALL": {
+   "n": 44,
+   "bias_m": -26.6,
+   "mae_m": 35.5,
+   "rmse_m": 53.1,
+   "median_abs_m": 19.9
+  }
+ },
+ "points": [
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "",
+   "osm_ele": 828.0,
+   "dem": 824.2
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Visapur",
+   "osm_ele": 1064.0,
+   "dem": 1075.9
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Lohgad",
+   "osm_ele": 1032.0,
+   "dem": 1023.1
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Tikona peak",
+   "osm_ele": 1087.0,
+   "dem": 1018.7
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Durga Tekdi",
+   "osm_ele": 690.0,
+   "dem": 678.0
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Shrivardhan",
+   "osm_ele": 815.0,
+   "dem": 755.4
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Tung",
+   "osm_ele": 1075.0,
+   "dem": 902.4
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Bhimashankar",
+   "osm_ele": 1009.0,
+   "dem": 1023.9
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "\u092e\u093e\u0902\u0917\u0928\u093f\u092e\u093e\u0924\u093e \u092e\u0902\u0926\u093f\u0930",
+   "osm_ele": 1100.0,
+   "dem": 1113.3
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Gunya",
+   "osm_ele": 940.0,
+   "dem": 1051.0
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "",
+   "osm_ele": 840.0,
+   "dem": 842.8
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "",
+   "osm_ele": 950.0,
+   "dem": 950.4
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Jivdhan",
+   "osm_ele": 1145.0,
+   "dem": 1081.5
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Bale Killa",
+   "osm_ele": 1384.0,
+   "dem": 1358.4
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Ghoradeshwar",
+   "osm_ele": 820.0,
+   "dem": 808.2
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Marunji tekdi",
+   "osm_ele": 834.0,
+   "dem": 823.8
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Bhojgiri Peak",
+   "osm_ele": 1171.0,
+   "dem": 1093.8
+  },
+  {
+   "region": "Sahyadri (Pune-Ahilyanagar)",
+   "name": "Taramati Peak",
+   "osm_ele": 1422.0,
+   "dem": 1314.1
+  },
+  {
+   "region": "Deccan plateau (Karnataka)",
+   "name": "Madhugiri Betta",
+   "osm_ele": 1196.0,
+   "dem": 1126.4
+  },
+  {
+   "region": "Deccan plateau (Karnataka)",
+   "name": "Siddarabetta",
+   "osm_ele": 1295.0,
+   "dem": 1273.8
+  },
+  {
+   "region": "Deccan plateau (Karnataka)",
+   "name": "Kaulibetta",
+   "osm_ele": 1257.0,
+   "dem": 1093.6
+  },
+  {
+   "region": "Deccan plateau (Karnataka)",
+   "name": "Ramadevara Betta",
+   "osm_ele": 1177.0,
+   "dem": 1175.7
+  },
+  {
+   "region": "Deccan plateau (Karnataka)",
+   "name": "Chinnagara Betta",
+   "osm_ele": 1225.0,
+   "dem": 1158.8
+  },
+  {
+   "region": "Deccan plateau (Karnataka)",
+   "name": "Shivagange Betta",
+   "osm_ele": 1368.0,
+   "dem": 1328.0
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Doddabetta",
+   "osm_ele": 2637.0,
+   "dem": 2607.2
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Anginda",
+   "osm_ele": 2383.0,
+   "dem": 2352.1
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Gulkal",
+   "osm_ele": 2468.0,
+   "dem": 2433.6
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Elephant Hill",
+   "osm_ele": 1100.0,
+   "dem": 1116.9
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Devar Betta",
+   "osm_ele": 2530.0,
+   "dem": 2515.3
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Kolaribetta",
+   "osm_ele": 2630.0,
+   "dem": 2620.3
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Morapu Malai",
+   "osm_ele": 1500.0,
+   "dem": 1504.8
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "P. 2594",
+   "osm_ele": 2594.0,
+   "dem": 2579.3
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "",
+   "osm_ele": 2088.0,
+   "dem": 2069.3
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Velliangiri",
+   "osm_ele": 1801.0,
+   "dem": 1791.4
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Sispara",
+   "osm_ele": 2206.0,
+   "dem": 2161.1
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Mukurthi Peak",
+   "osm_ele": 2554.0,
+   "dem": 2532.4
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Snowdon Peak",
+   "osm_ele": 2530.0,
+   "dem": 2542.1
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Club Hill",
+   "osm_ele": 2448.0,
+   "dem": 2443.9
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Needle Rock",
+   "osm_ele": 1440.0,
+   "dem": 1446.5
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Idinjavari Malai",
+   "osm_ele": 1287.0,
+   "dem": 1259.4
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "",
+   "osm_ele": 1497.0,
+   "dem": 1481.0
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Varadi Mala",
+   "osm_ele": 1530.0,
+   "dem": 1508.3
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Kuttadikkal Mala",
+   "osm_ele": 1496.0,
+   "dem": 1441.3
+  },
+  {
+   "region": "Nilgiris / Western Ghats (TN-Kerala)",
+   "name": "Tumba Mala",
+   "osm_ele": 1522.0,
+   "dem": 1492.4
+  }
+ ]
+}

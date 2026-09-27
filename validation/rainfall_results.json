@@ -1,0 +1,68 @@
+[
+ {
+  "station": "Ahmednagar",
+  "lat": 19.08,
+  "lon": 74.74,
+  "imd_normal_mm": 608.1,
+  "climate": "semi-arid, rain shadow",
+  "chirps": 658.1,
+  "nasa_power": 652.0,
+  "open_meteo": null,
+  "open_meteo_error": "_ssl.c:1015: The handshake operation timed out"
+ },
+ {
+  "station": "Pune (Shivajinagar)",
+  "lat": 18.53,
+  "lon": 73.85,
+  "imd_normal_mm": 841.2,
+  "climate": "leeward Western Ghats",
+  "chirps": 897.9,
+  "nasa_power": 1616.7,
+  "open_meteo": null,
+  "open_meteo_error": "Open-Meteo: HTTP 429 {\"reason\":\"Daily API request limit exceeded. Please try aga"
+ },
+ {
+  "station": "Jaisalmer",
+  "lat": 26.9,
+  "lon": 70.92,
+  "imd_normal_mm": 256.9,
+  "climate": "arid",
+  "chirps": 184.8,
+  "nasa_power": 210.1,
+  "open_meteo": null,
+  "open_meteo_error": "Open-Meteo: HTTP 429 {\"error\":true,\"reason\":\"Daily API request limit exceeded. P"
+ },
+ {
+  "station": "Bengaluru",
+  "lat": 12.97,
+  "lon": 77.59,
+  "imd_normal_mm": 1077.8,
+  "climate": "semi-arid plateau",
+  "chirps": 1054.0,
+  "nasa_power": 858.7,
+  "open_meteo": null,
+  "open_meteo_error": "Open-Meteo: HTTP 429 {\"reason\":\"Daily API request limit exceeded. Please try aga"
+ },
+ {
+  "station": "Chennai (Airport)",
+  "lat": 12.99,
+  "lon": 80.17,
+  "imd_normal_mm": 1408.4,
+  "climate": "NE-monsoon coast",
+  "chirps": 1396.8,
+  "nasa_power": 1237.9,
+  "open_meteo": null,
+  "open_meteo_error": "Open-Meteo: HTTP 429 {\"error\":true,\"reason\":\"Daily API request limit exceeded. P"
+ },
+ {
+  "station": "Mumbai (Santacruz)",
+  "lat": 19.09,
+  "lon": 72.85,
+  "imd_normal_mm": 2502.3,
+  "climate": "windward coast",
+  "chirps": 2684.6,
+  "nasa_power": 2341.7,
+  "open_meteo": null,
+  "open_meteo_error": "Open-Meteo: HTTP 429 {\"reason\":\"Daily API request limit exceeded. Please try aga"
+ }
+]

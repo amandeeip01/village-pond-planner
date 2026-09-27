@@ -1,0 +1,26 @@
+# Manual labels, sheet 1 (Hiware Bazar). V=vegetation O=open B=built W=water M=mixed (excluded)
+1 V
+2 O
+3 O
+4 V
+5 O
+6 O
+7 O
+8 M
+9 O
+10 O
+11 O
+12 O
+13 M
+14 V
+15 O
+16 M
+17 O
+18 O
+19 O
+20 V
+21 M
+22 B
+23 O
+24 O
+25 O
