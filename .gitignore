@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.kml
+*.kmz
+!sample_contours.kml
+.env
+cache/
+data/
+validation/__pycache__/
+report/figures/__pycache__/
