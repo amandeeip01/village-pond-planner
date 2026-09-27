@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Village Pond Planner</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="/static/app.css" />
+</head>
+<body>
+  <a class="skip-link" href="#sidebar">Skip to controls</a>
+  <header>
+    <div class="brand">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2.5c-.3 0-.6.1-.8.4C9.4 5.3 5 11.1 5 15a7 7 0 0 0 14 0c0-3.9-4.4-9.7-6.2-12.1a1 1 0 0 0-.8-.4Z"/></svg>
+      <div>
+        <h1>Village Pond Planner</h1>
+        <small>Terrain, land, rainfall and runoff analysis for siting rainwater-harvesting ponds</small>
+      </div>
+    </div>
+    <a class="docs-link" href="/docs" target="_blank" rel="noopener">API docs</a>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar" id="sidebar" tabindex="-1" aria-label="Controls and results">
+      <nav class="tabs" role="tablist">
+        <button class="tab active" data-tab="village" role="tab" aria-selected="true" aria-controls="tab-village" id="t-village">Village</button>
+        <button class="tab" data-tab="contour" role="tab" aria-selected="false" aria-controls="tab-contour" id="t-contour">Contour file</button>
+        <button class="tab" data-tab="history" role="tab" aria-selected="false" aria-controls="tab-history" id="t-history">History</button>
+      </nav>
+
+      <!-- ============ Village mode ============ -->
+      <section class="panel" id="tab-village" role="tabpanel" aria-labelledby="t-village">
+        <div class="form-group search">
+          <label for="searchInput">1. Find the village</label>
+          <div class="search-row">
+            <input type="text" id="searchInput" placeholder="e.g. Ralegan Siddhi, Hiware Bazar" autocomplete="off" />
+            <button type="button" class="btn-secondary" id="searchBtn">Search</button>
+          </div>
+          <ul class="search-results" id="searchResults" aria-live="polite" aria-label="Search results"></ul>
+          <p class="hint">Or click anywhere on the map to set the analysis centre.</p>
+        </div>
+
+        <div class="selected" id="selectedPlace">No location selected.</div>
+
+        <div class="form-group">
+          <label for="radius">2. Analysis area</label>
+          <select id="radius">
+            <option value="1000">2 x 2 km</option>
+            <option value="1500">3 x 3 km</option>
+            <option value="2000" selected>4 x 4 km</option>
+            <option value="3000">6 x 6 km</option>
+            <option value="4000">8 x 8 km</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>3. Government land (optional)</label>
+          <div class="btn-row">
+            <button type="button" class="btn-secondary" id="drawParcelBtn">Draw parcel</button>
+            <label class="btn-secondary file-btn">Upload GeoJSON<input type="file" id="parcelFile" accept=".geojson,.json" hidden /></label>
+            <button type="button" class="btn-ghost" id="clearParcelsBtn">Clear</button>
+          </div>
+          <p class="hint" id="parcelInfo">Without parcels, available land is inferred from satellite imagery and OpenStreetMap.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="check"><input type="checkbox" id="manualPond" /> Choose pond location myself</label>
+          <p class="hint" id="manualHint" hidden>Click the map to drop the pond pin. It is snapped to the nearest drainage line.</p>
+        </div>
+
+        <details class="advanced">
+          <summary>Advanced parameters</summary>
+          <div class="grid2">
+            <div class="form-group">
+              <label for="soilGroup">Soil (hydrologic group)</label>
+              <select id="soilGroup">
+                <option value="A">A: sand, loamy sand</option>
+                <option value="B">B: silt loam, loam</option>
+                <option value="C" selected>C: sandy clay loam</option>
+                <option value="D">D: clay / black cotton</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="years">Rainfall record (years)</label>
+              <input type="number" id="years" value="20" min="5" max="40" />
+            </div>
+            <div class="form-group">
+              <label for="rainSource">Rainfall dataset</label>
+              <select id="rainSource">
+                <option value="auto" selected>Auto (CHIRPS 5 km first)</option>
+                <option value="chirps">CHIRPS only</option>
+                <option value="open_meteo">Open-Meteo ERA5</option>
+                <option value="nasa_power">NASA POWER</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="rainNormal">Local rainfall normal (mm)</label>
+              <input type="number" id="rainNormal" placeholder="optional, e.g. IMD" min="1" step="10" />
+            </div>
+            <div class="form-group">
+              <label for="fillFraction">Storage / dependable runoff</label>
+              <input type="number" id="fillFraction" value="0.5" min="0.1" max="1.5" step="0.05" />
+            </div>
+            <div class="form-group">
+              <label for="maxDepth">Max pond depth (m)</label>
+              <input type="number" id="maxDepth" value="4.5" min="2" max="6" step="0.5" />
+            </div>
+            <div class="form-group">
+              <label for="sideSlope">Side slope (H:1V)</label>
+              <input type="number" id="sideSlope" value="1.5" min="1" max="3" step="0.25" />
+            </div>
+            <div class="form-group">
+              <label for="maxSlope">Max ground slope (deg)</label>
+              <input type="number" id="maxSlope" value="8" min="1" max="30" step="1" />
+            </div>
+            <div class="form-group">
+              <label for="gridRes">Grid cells per side</label>
+              <input type="number" id="gridRes" value="200" min="60" max="320" step="20" />
+            </div>
+          </div>
+        </details>
+
+        <button type="button" class="btn-primary" id="runVillageBtn" disabled>Analyse village</button>
+      </section>
+
+      <!-- ============ Contour upload mode ============ -->
+      <section class="panel" id="tab-contour" role="tabpanel" aria-labelledby="t-contour" hidden>
+        <form id="contourForm">
+          <div class="form-group">
+            <label for="fileInput">Contour map (.kml or .kmz)</label>
+            <input type="file" id="fileInput" accept=".kml,.kmz" required />
+          </div>
+          <div class="grid2">
+            <div class="form-group">
+              <label for="cSoil">Soil group</label>
+              <select id="cSoil"><option>A</option><option>B</option><option selected>C</option><option>D</option></select>
+            </div>
+            <div class="form-group">
+              <label for="cGrid">Grid resolution</label>
+              <input type="number" id="cGrid" value="260" min="60" max="420" step="10" />
+            </div>
+            <div class="form-group">
+              <label for="cRain">Fallback rainfall (mm)</label>
+              <input type="number" id="cRain" value="800" min="1" step="10" />
+            </div>
+            <div class="form-group">
+              <label for="cDam">Bund height (m)</label>
+              <input type="number" id="cDam" value="3" min="0.5" max="30" step="0.5" />
+            </div>
+          </div>
+          <label class="check"><input type="checkbox" id="cLand" checked /> Assess land availability (satellite + OSM)</label>
+          <label class="check"><input type="checkbox" id="cRainApi" checked /> Fetch historical rainfall</label>
+          <p class="hint">Government parcels drawn in the Village tab are applied here too.</p>
+          <button type="submit" class="btn-primary" id="runContourBtn">Analyse contour map</button>
+        </form>
+      </section>
+
+      <!-- ============ History ============ -->
+      <section class="panel" id="tab-history" role="tabpanel" aria-labelledby="t-history" hidden>
+        <div class="history-head">
+          <h2>Saved analyses</h2>
+          <button type="button" class="btn-ghost" id="refreshHistory">Refresh</button>
+        </div>
+        <ul class="history" id="historyList"><li class="hint">Loading...</li></ul>
+      </section>
+
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+
+      <!-- ============ Welcome (before first result) ============ -->
+      <section id="welcome" class="welcome">
+        <h2>Plan a village pond in three steps</h2>
+        <ol class="steps">
+          <li><span>1</span><div><b>Pick the village</b><small>Search by name or click on the map.</small></div></li>
+          <li><span>2</span><div><b>Mark government land</b><small>Optional. Draw or upload parcels so the pond is placed only there.</small></div></li>
+          <li><span>3</span><div><b>Analyse</b><small>Terrain, land, 20 years of rainfall and runoff are processed in about 10 s.</small></div></li>
+        </ol>
+        <div class="deliverables">
+          <span>Pond location</span><span>Catchment</span><span>Rainfall statistics</span>
+          <span>Runoff volume</span><span>Pond dimensions</span><span>Maps &amp; charts</span>
+        </div>
+      </section>
+
+      <!-- ============ Results ============ -->
+      <section id="results" class="results" hidden>
+        <div class="results-head">
+          <div>
+            <h2 id="resultTitle">Results</h2>
+            <p class="subtitle" id="resultSub"></p>
+          </div>
+        </div>
+        <div class="action-row">
+          <button type="button" class="chip" id="zoomPond" title="Zoom the map to the pond">
+            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Zoom to pond</button>
+          <button type="button" class="chip" id="zoomCatch">Show catchment</button>
+          <button type="button" class="chip" id="printReport">
+            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M7 9V3h10v6M7 18H4v-7h16v7h-3M7 14h10v7H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Print report</button>
+          <button type="button" class="chip" id="dlJson">JSON</button>
+          <button type="button" class="chip" id="dlGeo">GeoJSON</button>
+        </div>
+        <div id="warnings"></div>
+
+        <div class="hero-card">
+          <div class="hero-label">Recommended pond storage</div>
+          <div class="hero-value" id="kStorage">-</div>
+          <div class="hero-sub" id="kDims">-</div>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><div class="k-label">Catchment</div><div class="k-value" id="kCatch">-</div></div>
+          <div class="kpi"><div class="k-label">Mean rainfall</div><div class="k-value" id="kRain">-</div></div>
+          <div class="kpi"><div class="k-label">Annual runoff</div><div class="k-value" id="kRunoff">-</div></div>
+          <div class="kpi"><div class="k-label">Fills / dry year</div><div class="k-value" id="kFills">-</div></div>
+        </div>
+
+        <div class="cand-box" id="candList" hidden></div>
+
+        <nav class="subtabs" role="tablist">
+          <button class="subtab active" data-pane="pond" role="tab" aria-selected="true" aria-controls="pane-pond">Pond</button>
+          <button class="subtab" data-pane="rain" role="tab" aria-selected="false" aria-controls="pane-rain">Rainfall</button>
+          <button class="subtab" data-pane="runoff" role="tab" aria-selected="false" aria-controls="pane-runoff">Runoff</button>
+          <button class="subtab" data-pane="site" role="tab" aria-selected="false" aria-controls="pane-site">Site &amp; land</button>
+        </nav>
+
+        <div class="pane" id="pane-pond">
+          <h3 class="print-only">Recommended pond</h3>
+          <div id="pondSection"></div>
+          <div class="stat-grid" id="pondStats"></div>
+          <ul class="notes" id="pondNotes"></ul>
+        </div>
+
+        <div class="pane" id="pane-rain" hidden>
+          <h3 class="print-only">Rainfall</h3>
+          <p class="source" id="rainSourceNote"></p>
+          <div class="stat-grid" id="rainStats"></div>
+          <div class="chart-box"><canvas id="annualChart" role="img" aria-label="Bar chart of annual rainfall and runoff by year"></canvas></div>
+          <div class="chart-box short"><canvas id="monthlyChart" role="img" aria-label="Bar chart of mean monthly rainfall"></canvas></div>
+        </div>
+
+        <div class="pane" id="pane-runoff" hidden>
+          <h3 class="print-only">Runoff</h3>
+          <div class="stat-grid" id="runoffStats"></div>
+          <h4>Catchment land cover</h4>
+          <div id="coverBar"></div>
+          <h4>Catchment</h4>
+          <div class="stat-grid" id="catchStats"></div>
+        </div>
+
+        <div class="pane" id="pane-site" hidden>
+          <h3 class="print-only">Site and land</h3>
+          <div class="stat-grid" id="siteStats"></div>
+          <p class="reason" id="siteReason"></p>
+          <h4>Land availability</h4>
+          <div class="stat-grid" id="landStats"></div>
+          <p class="source" id="landNote"></p>
+        </div>
+
+        <p class="meta" id="metaInfo"></p>
+      </section>
+    </aside>
+
+    <div class="map-wrap">
+      <div id="map" role="region" aria-label="Map. Use arrow keys to pan and plus or minus to zoom. Click to choose the analysis centre."></div>
+      <div class="map-overlay" id="mapOverlay" hidden>
+        <div class="overlay-card">
+          <div class="big-spinner"></div>
+          <div class="overlay-title">Analysing terrain and water</div>
+          <ol class="stage-list" id="stageList"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>window.MAPTILER_KEY = window.__MAPTILER_KEY__ || "";</script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
