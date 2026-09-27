@@ -1,0 +1,17 @@
+# Render blueprint: New > Blueprint > select this repository.
+services:
+  - type: web
+    name: village-pond-planner
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: MAPTILER_KEY      # optional; adds MapTiler basemaps
+        sync: false
+# Note: the free plan has no persistent disk, so the SQLite history and the
+# tile/rainfall caches reset on each deploy or restart. Add a disk mounted at
+# /opt/render/project/src/data (and set DATABASE_PATH) on a paid plan to keep them.
