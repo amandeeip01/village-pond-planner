@@ -2,7 +2,7 @@
 
 **Name:** Amandeeip Kammari  **Roll Number:** 12341060
 
-**GitHub repository:** `https://github.com/<your-username>/catchment-api`
+**GitHub repository:** `https://github.com/amandeeip01/village-pond-planner`
 
 **Working API route:** `https://<your-app>.onrender.com/analyzeContour`
 
