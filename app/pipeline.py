@@ -64,6 +64,24 @@ def _tick(opts: Options, name: str, t0: float) -> float:
     return now
 
 
+def sea_mask(z: np.ndarray, min_seed_frac: float = 0.0025) -> np.ndarray:
+    """
+    Cells that are open sea in an elevation-service DEM.
+
+    Terrain tiles flatten the sea surface to 0 m (with small interpolation
+    noise near the shore) and show bathymetry further out. Low-lying land such
+    as Kuttanad's polders is also at or below 0 m, so a threshold alone is not
+    enough: a connected low area (<= 0.05 m) counts as sea only when it holds
+    enough flat sea-surface or bathymetry cells.
+    """
+    low = (z <= 0.05).astype(np.uint8)
+    n, labels = cv2.connectedComponents(low, connectivity=8)
+    seed = (np.abs(z) <= 0.05) | (z < -5.0)
+    counts = np.bincount(labels[seed], minlength=n)
+    counts[0] = 0
+    return np.isin(labels, np.nonzero(counts >= max(25, min_seed_frac * z.size))[0])
+
+
 def _catchment_geometry(dem: DEM, mask: np.ndarray):
     ring = trace_boundary(mask)
     if not ring:
@@ -91,15 +109,24 @@ def run(dem: DEM, dem_info: dict, *, mode: str, source_meta: dict, opts: Options
     direction = d8_flow_direction(filled)
     accum = flow_accumulation(filled, direction)
     edge_inflow = edge_draining_cells(filled, direction)
+    # Uploaded contour maps may use a local datum, so the sea check is village-only.
+    sea = sea_mask(dem.z) if mode == "village" else np.zeros(dem.z.shape, dtype=bool)
+    if sea.mean() > 0.5:
+        raise ValueError("Most of the analysis area is at or below sea level (open sea). "
+                         "Choose a location on land.")
+    if sea.any():
+        warnings.append(f"{sea.mean():.0%} of the analysis area is at or below sea level and was "
+                        "excluded from pond siting.")
     t = _tick(opts, "terrain_and_flow", t)
 
     # ---- 2. Land availability ---------------------------------------------
     land = None
     if opts.analyze_land:
-        land = assess_land(dem, slope, parcels=opts.parcels, max_slope_deg=opts.max_slope_deg)
+        land = assess_land(dem, slope, parcels=opts.parcels, max_slope_deg=opts.max_slope_deg,
+                           exclude=sea)
         warnings += land["warnings"]
     t = _tick(opts, "land_assessment", t)
-    allowed = land["allowed"] if land else None
+    allowed = land["allowed"] if land else (~sea if sea.any() else None)
 
     # ---- 3. Candidate pond sites -----------------------------------------
     score = None
@@ -108,6 +135,8 @@ def run(dem: DEM, dem_info: dict, *, mode: str, source_meta: dict, opts: Options
         r, c = int(round(float(r))), int(round(float(c)))
         if not (0 <= r < dem.nrows and 0 <= c < dem.ncols):
             raise ValueError("Chosen pond location is outside the analysis area.")
+        if sea[r, c]:
+            raise ValueError("Chosen pond location is in the sea.")
         radius = max(1, int(round(60.0 / dem.cell)))
         site = snap_to_drainage(accum, (r, c), radius, allowed)
         site_diag = {"mode": "user_selected", "snapped_within_m": 60,
@@ -117,12 +146,14 @@ def run(dem: DEM, dem_info: dict, *, mode: str, source_meta: dict, opts: Options
             dem.z, slope, curvature, accum,
             allowed=allowed, land_score=land["land_score"] if land else None,
             complete=~edge_inflow if opts.require_complete_catchment else None,
+            exclude=sea,
         )
     else:
         site, site_diag, score = select_pond_site(
             dem.z, slope, curvature, accum,
             allowed=allowed, land_score=land["land_score"] if land else None,
             complete=~edge_inflow if opts.require_complete_catchment else None,
+            exclude=sea,
         )
         site_diag["mode"] = "automatic"
         if land and not site_diag.get("restricted_to_available_land"):

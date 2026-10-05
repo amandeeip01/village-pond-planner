@@ -36,6 +36,7 @@ def select_pond_site(
     allowed: np.ndarray | None = None,
     land_score: np.ndarray | None = None,
     complete: np.ndarray | None = None,
+    exclude: np.ndarray | None = None,
     edge_buffer_frac: float = 0.06,
     stream_percentile: float = 92.0,
     weights: tuple[float, float, float] = (0.45, 0.35, 0.20),
@@ -51,7 +52,8 @@ def select_pond_site(
     When `allowed` is given, only those cells are candidates; the drainage
     threshold is relaxed step by step if the available land does not touch
     the main drainage lines. If no available cell qualifies at all, the
-    terrain-only choice is returned and flagged.
+    terrain-only choice is returned and flagged. Cells in `exclude` (the sea)
+    are never candidates, not even in that fallback.
 
     Returns ((row, col), diagnostics, score) where score is the full score
     grid (-inf outside the candidate cells), used to rank alternative sites.
@@ -64,6 +66,8 @@ def select_pond_site(
     buf_c = max(2, int(ncols * edge_buffer_frac))
     interior = np.zeros(z.shape, dtype=bool)
     interior[buf_r:nrows - buf_r, buf_c:ncols - buf_c] = True
+    if exclude is not None:
+        interior &= ~exclude
     # Prefer outlets whose whole catchment lies inside the map.
     complete_used = False
     if complete is not None and (interior & complete).sum() >= 10:

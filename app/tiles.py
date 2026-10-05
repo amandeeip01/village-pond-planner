@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import math
 import os
+import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -103,7 +104,11 @@ def _fetch_tile(client: httpx.Client, source: str, z: int, x: int, y: int) -> by
         return path.read_bytes()
     url = spec["url"].format(z=z, x=x, y=y)
     last_exc = None
-    for _ in range(3):
+    # Back off between attempts: on flaky networks DNS lookups and connections
+    # fail transiently, and one missing tile would abort the whole analysis.
+    for attempt in range(5):
+        if attempt:
+            time.sleep(0.5 * attempt)
         try:
             resp = client.get(url)
             if resp.status_code == 200 and resp.content:

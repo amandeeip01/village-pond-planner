@@ -113,10 +113,18 @@ def recommend_pond(*, dependable_runoff_m3: float, mean_runoff_m3: float, land_a
                 hi = mid
         volume = lo
         width, footprint = top_area(volume, depth)
-        notes.append(
-            f"Storage capped at {volume:,.0f} m3: the full target of {target:,.0f} m3 would exceed "
-            f"{limit_reason}. The catchment can support a larger structure or a second pond downstream."
-        )
+        if volume < 1.0:
+            # Even the smallest pond at maximum depth does not fit on the land patch.
+            volume = 0.0
+            notes.append(
+                f"No pond fits here: even the smallest excavation would exceed {limit_reason}. "
+                "Choose another site or mark more available land."
+            )
+        else:
+            notes.append(
+                f"Storage capped at {volume:,.0f} m3: the full target of {target:,.0f} m3 would exceed "
+                f"{limit_reason}. The catchment can support a larger structure or a second pond downstream."
+            )
     if (width - 2 * side_slope * depth) < MIN_BED_WIDTH_M:
         notes.append("Pond is small; the bed is narrower than a typical excavator working width.")
 
@@ -156,7 +164,7 @@ def recommend_pond(*, dependable_runoff_m3: float, mean_runoff_m3: float, land_a
         "excavation_volume_m3": round(excavation, 1),
         "available_land_m2": None if land_area_m2 is None else round(land_area_m2, 1),
         "dry_season_evaporation_loss_m3": None if evap is None else round(evap, 1),
-        "evaporation_loss_pct_of_storage": None if evap is None else round(100 * evap / volume, 1),
+        "evaporation_loss_pct_of_storage": round(100 * evap / volume, 1) if evap is not None and volume else None,
         "seasonal_seepage_loss_m3": round(seepage, 1),
         "fills_per_dependable_year": round(fills_per_year, 2),
         "mean_year_inflow_to_storage_ratio": round(mean_runoff_m3 / volume, 2) if volume else None,

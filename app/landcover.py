@@ -36,10 +36,14 @@ returned in the response.
 
 from __future__ import annotations
 
+import threading
+import time
+
 import cv2
 import httpx
 import numpy as np
 
+from . import db
 from .terrain import DEM
 from .tiles import SOURCES, USER_AGENT, TileError, fetch_mosaic, pick_zoom, sample_mosaic
 
@@ -145,6 +149,12 @@ def satellite_landcover(dem: DEM, oversample: int = 4) -> tuple[np.ndarray, dict
     mosaic, origin = fetch_mosaic("esri_imagery", bbox, z)
     lon, lat = dem.lonlat_grid(oversample)
     img = sample_mosaic(mosaic, origin, z, lon, lat, interpolation=cv2.INTER_AREA)
+    # Where Esri has no imagery (open ocean, some remote areas) it serves flat
+    # grey "Map data not yet available" tiles; classifying those would call
+    # everything open land.
+    placeholder = (np.ptp(img, axis=2) <= 2) & (img[..., 0] >= 195) & (img[..., 0] <= 215)
+    if placeholder.mean() > 0.5:
+        raise TileError("Esri World Imagery has no imagery for this area")
     cls = classify_imagery(img, dem.cell / oversample)
 
     fractions = np.zeros((dem.nrows, dem.ncols, 4), dtype=np.float32)
@@ -158,7 +168,36 @@ def satellite_landcover(dem: DEM, oversample: int = 4) -> tuple[np.ndarray, dict
 # --------------------------------------------------------------------------
 # 2. OpenStreetMap
 # --------------------------------------------------------------------------
+OSM_CACHE_S = 7 * 24 * 3600
+OSM_COOLDOWN_S = 120.0
+# Overpass allows about two concurrent queries per IP; extra ones queue and
+# time out. Serialising our calls (and caching the answers) keeps concurrent
+# analyses from losing their OSM exclusions. After a failure, calls fail fast
+# for a cool-down period instead of queueing behind one timeout after another.
+_overpass_lock = threading.Lock()
+_overpass_failed_at = 0.0
+
+
 def fetch_osm(bbox, timeout_s: int = 25) -> list[dict]:
+    global _overpass_failed_at
+    key = "osm:" + ":".join(f"{v:.5f}" for v in bbox)
+    cached = db.cache_get(key, OSM_CACHE_S)
+    if cached is None:
+        with _overpass_lock:
+            cached = db.cache_get(key, OSM_CACHE_S)   # filled while we waited?
+            if cached is None:
+                if time.monotonic() - _overpass_failed_at < OSM_COOLDOWN_S:
+                    raise RuntimeError("Overpass API unavailable (failed recently; retrying after a cool-down)")
+                try:
+                    cached = {"elements": _query_overpass(bbox, timeout_s)}
+                except RuntimeError:
+                    _overpass_failed_at = time.monotonic()
+                    raise
+                db.cache_put(key, cached)
+    return cached["elements"]
+
+
+def _query_overpass(bbox, timeout_s: int) -> list[dict]:
     min_lon, min_lat, max_lon, max_lat = bbox
     b = f"{min_lat},{min_lon},{max_lat},{max_lon}"
     query = f"""
@@ -182,7 +221,10 @@ out geom qt;
     headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
     for url in OVERPASS_URLS:
         try:
-            resp = httpx.post(url, data={"data": query}, headers=headers, timeout=timeout_s + 10)
+            # Short connect timeout: a firewalled network drops the SYN, and waiting the
+            # full read timeout per server would stall every analysis.
+            resp = httpx.post(url, data={"data": query}, headers=headers,
+                              timeout=httpx.Timeout(timeout_s + 10, connect=5.0))
             if resp.status_code == 200:
                 return resp.json().get("elements", [])
             last = f"HTTP {resp.status_code}"
@@ -349,7 +391,7 @@ def rasterize_parcels(geojson: dict, dem: DEM) -> np.ndarray:
 # Combine
 # --------------------------------------------------------------------------
 def assess_land(dem: DEM, slope_rad: np.ndarray, *, parcels: dict | None = None,
-                max_slope_deg: float = 8.0) -> dict:
+                max_slope_deg: float = 8.0, exclude: np.ndarray | None = None) -> dict:
     """
     Returns a dict with:
       allowed      bool grid - land where a pond may be excavated
@@ -388,6 +430,8 @@ def assess_land(dem: DEM, slope_rad: np.ndarray, *, parcels: dict | None = None,
 
     slope_deg = np.degrees(slope_rad)
     allowed = slope_deg <= max_slope_deg
+    if exclude is not None:
+        allowed &= ~exclude
     tier = np.full(shape, 2, dtype=np.int8)
     land_score = np.full(shape, 0.7)
 

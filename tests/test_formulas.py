@@ -112,6 +112,15 @@ def test_recommend_pond_caps_when_land_too_small():
     assert any("capped" in n for n in r["notes"])
 
 
+
+def test_recommend_pond_reports_no_fit_on_a_tiny_patch():
+    # One 20 m cell of land: even the smallest 4.5 m deep pond does not fit.
+    r = recommend_pond(dependable_runoff_m3=50_000, mean_runoff_m3=60_000, land_area_m2=400,
+                       dry_season_et0_mm=1200, soil_group="C")
+    assert r["storage_capacity_m3"] == 0
+    assert r["evaporation_loss_pct_of_storage"] is None
+    assert any("No pond fits" in n for n in r["notes"])
+
 # ---------------------------------------------------------------- rainfall stats
 def test_extraterrestrial_radiation_fao56_example():
     # FAO-56 Example 8: lat 20 S, 3 September (doy 246) -> Ra = 32.2 MJ m-2 d-1
