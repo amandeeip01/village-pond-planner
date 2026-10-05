@@ -31,7 +31,7 @@ for the point you choose (or from a contour map you upload).
 ## Quick start
 
 ```bash
-python3.12 -m venv .venv
+python3.12 -m venv .venv   # Python 3.12 or newer (3.13 also works)
 .venv/bin/pip install -r requirements.txt
 .venv/bin/uvicorn app.main:app --reload --port 8000
 ```
@@ -137,6 +137,10 @@ warning is issued instead).
   with lower priority (farm pond on private land).
 - **Parcels:** if supplied, siting is restricted to them.
 - **Slope:** ground steeper than 8° (configurable) is excluded.
+- **Sea:** in village mode, connected low areas holding the flat 0 m sea
+  surface or bathymetry are excluded, so coastal villages never get a pond
+  offshore. Low-lying land such as Kuttanad's polders is kept. A location that
+  is mostly sea is rejected with `422`.
 
 OSM has no cadastral ownership, so without parcels "preferred" is an
 indication only; the response says so and recommends checking revenue maps
@@ -153,9 +157,10 @@ without double counting.
 
 ### Testing and validation
 
-`python -m pytest tests` runs 23 unit tests that check every formula against
+`python -m pytest tests` runs 35 unit tests that check every formula against
 hand calculations or exact analytic answers, including a synthetic valley
-whose catchment is known cell for cell. `VALIDATION.md` reports the accuracy
+whose catchment is known cell for cell, that pond siting never lands in
+the sea, and that OpenStreetMap queries are cached and fail fast. `VALIDATION.md` reports the accuracy
 checks: rainfall against IMD normals, elevation against surveyed summits, and
 the land-cover classifier against 100 blind hand-labelled cells (92 %,
 κ = 0.85).
@@ -222,23 +227,26 @@ alias.
 ```json
 {
   "status": "success", "mode": "village", "analysis_id": 10,
-  "pond_site":   { "location": {"lon": 74.596, "lat": 19.0799, "elevation_m": 708.95},
-                   "slope_deg": 0.4, "on_available_land": true, "land_tier": "open_land", "reason": "..." },
-  "catchment":   { "area_hectares": 137.6, "perimeter_m": 7720, "relief_m": 44.8,
-                   "mean_slope_deg": 3.26, "touches_analysis_edge": false, "boundary_geojson": {"...": "..."} },
-  "rainfall":    { "source": "...", "period": "2006-2025", "mean_annual_mm": 909.8,
-                   "dependable_75pct_mm": 757.7, "annual_series": [], "monthly_mean_mm": [] },
-  "runoff":      { "composite_curve_number": 85.8, "mean_annual_runoff_m3": 155158,
-                   "dependable_annual_runoff_m3": 82595, "rational_method_runoff_m3": 414647 },
-  "pond_design": { "storage_capacity_m3": 41298, "water_depth_m": 3.0, "top_length_m": 149.3,
-                   "top_width_m": 99.5, "excavation_volume_m3": 48821, "notes": [] },
+  "pond_site":   { "location": {"lon": 74.6079, "lat": 19.0827, "elevation_m": 700.99},
+                   "slope_deg": 0.07, "on_available_land": true, "land_tier": "open_land", "reason": "..." },
+  "catchment":   { "area_hectares": 110.76, "perimeter_m": 7440, "relief_m": 84.3,
+                   "mean_slope_deg": 3.99, "touches_analysis_edge": false, "boundary_geojson": {"...": "..."} },
+  "rainfall":    { "source": "...", "period": "2006-2025", "mean_annual_mm": 703.7,
+                   "dependable_75pct_mm": 603.8, "annual_series": [], "monthly_mean_mm": [] },
+  "runoff":      { "composite_curve_number": 85.9, "mean_annual_runoff_m3": 102757,
+                   "dependable_annual_runoff_m3": 59495, "rational_method_runoff_m3": 262215 },
+  "pond_design": { "storage_capacity_m3": 29748, "water_depth_m": 3.0, "top_length_m": 127.5,
+                   "top_width_m": 85.0, "excavation_volume_m3": 35250, "notes": [] },
   "candidates":  [ { "rank": 1, "score": 0.92, "pond_site": {}, "catchment": {}, "runoff": {}, "pond_design": {}, "pond_footprint": {} } ],
   "land":        { "suitable_area_m2": 12194800, "preferred_area_m2": 243600, "sources": [] },
   "layers":      { "contours": {}, "drainage": {}, "suitable_land": {}, "pond_footprint": {},
                    "elevation_png": "data:image/png;base64,...", "landcover_png": "...", "bounds": [] },
-  "warnings": [], "method": {}, "processing_seconds": 10.8
+  "warnings": [], "method": {}, "processing_seconds": 4.7
 }
 ```
+
+Example values are from Hiware Bazar on 2 October 2026. Imagery, OpenStreetMap and
+rainfall are live sources, so results for the same request can change over time.
 
 ### Other routes
 
@@ -251,7 +259,8 @@ alias.
 | `GET /health` | Liveness probe |
 
 Errors return `{"status": "error", "detail": "..."}` — `400` empty upload,
-`413` file too large, `422` invalid input, `502` upstream data service down.
+`413` file too large, `422` invalid input or a location in the open sea,
+`502` upstream data service down.
 
 ---
 
@@ -280,6 +289,9 @@ Configuration (environment variables): `MAPTILER_KEY`, `DATABASE_PATH`
 - RGB-only imagery separates vegetation well but built-up detection is
   approximate; OSM buildings are the primary exclusion and OSM coverage of
   rural India varies.
+- RGB water detection misses turbid, green-tinted water and was not part of the
+  land-cover validation sample; the sea is excluded using elevation instead, and
+  inland water relies on OpenStreetMap.
 - Land ownership is not available from open data; supply parcels for a
   definitive answer.
 - Rainfall: CHIRPS is within about 9 % of IMD normals on average, but it
@@ -288,6 +300,8 @@ Configuration (environment variables): `MAPTILER_KEY`, `DATABASE_PATH`
   is very sensitive to it (−13 % rain gives −35 % runoff).
 - Soil group is a user input; groundwater depth and rock are not considered
   when choosing depth.
-- Public APIs are rate-limited (Open-Meteo per IP per day, Nominatim 1 req/s)
-  and ClimateSERV can be slow;
-  results are cached and fallbacks are automatic.
+- Public APIs are rate-limited (Open-Meteo per IP per day, Nominatim 1 req/s,
+  Overpass about 2 concurrent queries per IP) and ClimateSERV can be slow;
+  results are cached (rainfall 30 days, OpenStreetMap and geocoding 7 days),
+  Overpass calls are serialised with a 2-minute cool-down after a failure, and
+  fallbacks are automatic.

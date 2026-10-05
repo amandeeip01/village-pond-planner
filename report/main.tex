@@ -144,7 +144,7 @@ runoff model; and a rectangular excavated pond is dimensioned to half of the 75\
 annual runoff, subject to land and depth constraints. Results are delivered through a FastAPI
 back end and an accessible Leaflet front end with map overlays, charts, history and exports.
 
-The system was validated component by component. Twenty-three unit tests check every formula
+The system was validated component by component. Thirty-five unit tests check every formula
 against hand calculations and an analytic catchment reproduced cell for cell. Against IMD
 1991--2020 station normals, the chosen rainfall source (CHIRPS) has a mean absolute error of
 \textbf{8.9\,\%}, compared with 26.1\,\% for NASA POWER, which overestimated Pune by 92\,\%;
@@ -406,7 +406,7 @@ series, geocoding) with a time-to-live. Tiles are cached as files keyed by
 \node[tbl] (a) {\textcolor{white}{\textbf{analyses}}
 \nodepart{two}\texttt{id} INTEGER PK autoincrement\\ \texttt{created\_at} TEXT (UTC ISO-8601)\\ \texttt{village} TEXT\\ \texttt{mode} TEXT (village | contour\_upload)\\ \texttt{lat}, \texttt{lon} REAL (top pond site)\\ \texttt{summary\_json} TEXT (history card)\\ \texttt{result\_json} TEXT (full response)};
 \node[tbl,right=1.2cm of a] (c) {\textcolor{white}{\textbf{api\_cache}}
-\nodepart{two}\texttt{key} TEXT PK\\ \phantom{x}e.g.\ \texttt{rain:chirps:19.08:74.60:2006:2025}\\ \texttt{created\_at} REAL (epoch s)\\ \texttt{payload} TEXT (JSON)\\ TTL: rainfall 30 days, geocoding 7 days};
+\nodepart{two}\texttt{key} TEXT PK\\ \phantom{x}e.g.\ \texttt{rain:chirps:19.08:74.60:2006:2025}\\ \texttt{created\_at} REAL (epoch s)\\ \texttt{payload} TEXT (JSON)\\ TTL: rainfall 30 days, OSM and geocoding 7 days};
 \end{tikzpicture}
 \caption{SQLite schema. An index on \texttt{analyses(created\_at)} serves the history list.}
 \label{fig:schema}
@@ -763,6 +763,9 @@ Every external dependency has a defined failure mode.
   \item Rainfall falls back through three providers. Transient network errors are retried with
         back-off; definitive errors such as rate limits move straight to the next source.
   \item If imagery or OpenStreetMap is unavailable, siting continues on the remaining evidence.
+        OpenStreetMap answers are cached for 7 days and Overpass calls are serialised, since
+        the public server admits only about two queries per IP; after a failure, calls fail
+        fast for two minutes instead of each waiting for a timeout.
   \item If all rainfall services fail, the rational method is applied to a fallback rainfall
         value.
 \end{itemize}
@@ -811,6 +814,14 @@ Hiware Bazar (Ahilyanagar district, Maharashtra) is a well-known model village f
 development on the semi-arid Deccan plateau, in the rain shadow of the Western Ghats. The
 analysis covered a \SI{4}{km}$\times$\SI{4}{km} area centred at \ang{19.0680}\,N,
 \ang{74.6012}\,E, with soil group C and default parameters.
+
+The figures below come from a run on 27 September 2026. Imagery, OpenStreetMap and the CHIRPS
+archive are live sources, so a later run can differ. In a rerun on 2 October 2026 one road had
+been removed from OpenStreetMap; this changed the available-land mask slightly, and because the
+leading sites score almost equally (0.92 against 0.915), the order changed. The new rank~1 is at
+\ang{19.08266}\,N, \ang{74.60795}\,E (close to rank~3 in Table~\ref{tab:cands}), with a
+\SI{110.8}{ha} catchment and \SI{29748}{\cubic\metre} of storage. The method and the
+conclusions do not change, but the exact numbers depend on the date of the data.
 
 \subsection{Terrain and land}
 The DEM spans \SIrange{692}{875}{m}. OpenStreetMap supplied 111 buildings, 39 roads and 23 water
@@ -923,7 +934,7 @@ classifier with an independent reference. All scripts, raw results and labelled 
 the \code{validation/} directory and can be re-run.
 
 \subsection{Unit tests}
-Twenty-three \code{pytest} tests pass in 0.2\,s (Table~\ref{tab:tests}). The most informative
+Thirty-five \code{pytest} tests pass in 0.4\,s (Table~\ref{tab:tests}). The most informative
 is the synthetic V-valley: two planes meet along a channel sloping to the south. Off-channel
 cells step diagonally, so a cell at row $r$ and distance $k$ from the channel joins it at row
 $r-k$. The analytic catchment of the outlet at row $r_0$ is therefore
@@ -951,6 +962,8 @@ Depression filling & No interior sinks; surface never lowered \\
 V-valley catchment & Analytic set, cell for cell; accumulation equals its size \\
 Boundary polygon & Shoelace area $=$ cell count \\
 Bowl with channel; edge inflow & All cells reach the outlet; inward valley flagged, hill-top not \\
+Sea exclusion & Coastal valley: no site is ever placed on a sea cell, even in the terrain-only fallback; an inland polder below \SI{0}{m} is not mistaken for sea \\
+OpenStreetMap cache & Repeat query served from cache; after a failure the next query fails fast \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -1131,8 +1144,11 @@ daily rainfall; (b) to hydrologic soil group.}
         integrating state revenue maps (Bhu-Naksha) or panchayat records.
   \item \textbf{Soils and groundwater.} Soil group is a user input. The ISRIC SoilGrids API
         could supply texture automatically, and groundwater depth would bound excavation depth.
-  \item \textbf{Imagery.} RGB-only classification limits built-up and water detection.
-        Sentinel-2 NDVI/NDWI/NDBI would improve both.
+  \item \textbf{Imagery.} RGB-only classification limits built-up and water detection: turbid,
+        green-tinted water is not recognised, and the validation sample contained no water
+        cells, so the water class is unvalidated. Open sea is therefore excluded using the
+        elevation data (the flat \SI{0}{m} sea surface and bathymetry), and inland water relies
+        on OpenStreetMap. Sentinel-2 NDVI/NDWI/NDBI would improve both.
   \item \textbf{Rainfall.} IMD \ang{0.25} gridded data could be ingested as an additional
         source; climate-change scenarios could stress-test designs.
   \item \textbf{Economics.} Cost per cubic metre of storage and benefit indicators (irrigable

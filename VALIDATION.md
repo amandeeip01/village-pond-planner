@@ -14,7 +14,7 @@ Summary:
 
 | Component | Reference | Result |
 |---|---|---|
-| Formulas (runoff, pond volume, radiation, statistics, catchment) | Hand calculations, analytic geometry, FAO-56 / TR-55 worked examples | **23 / 23 tests pass** |
+| Formulas (runoff, pond volume, radiation, statistics, catchment) | Hand calculations, analytic geometry, FAO-56 / TR-55 worked examples | **35 / 35 tests pass** |
 | Catchment delineation | Synthetic V-valley with an exact analytic catchment | Identical, cell for cell; polygon area = cell count |
 | Rainfall — CHIRPS (default) | IMD 1991–2020 station normals, 6 stations | Mean absolute error **8.9 %**, median 7.0 %, bias −1.5 % |
 | Rainfall — NASA POWER (previous default) | Same | Mean absolute error 26.1 %; **+92 % at Pune** |
@@ -31,7 +31,7 @@ Run the tests with:
 .venv/bin/python -m pytest -q tests
 ```
 
-The result is `23 passed`.
+The result is `35 passed`.
 
 | Test | Independent reference |
 |---|---|
@@ -51,6 +51,9 @@ The result is `23 passed`.
 | Boundary polygon | The shoelace area of the traced ring equals the catchment cell count |
 | Bowl with channel | All cells drain to the single outlet |
 | Edge-inflow flag | Flags a valley entering from the map edge; does not flag a hill-top |
+| Sea exclusion (3 tests) | Coastal valley whose outlet is in the sea: no site is placed on a sea cell, even when no land is available |
+| Sea mask | Flat 0 m sea, bathymetry and shallow seabed joined to it are sea; an inland polder at −1.5 m is not |
+| OpenStreetMap cache (2 tests) | A repeated query is served from the cache; after a failure, the next query fails fast instead of waiting on Overpass again |
 
 ## 2. Rainfall (`validation/rainfall_check.py`)
 
